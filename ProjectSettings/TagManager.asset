@@ -9,6 +9,8 @@ TagManager:
   - Ruby
   - Coin
   - BlueBaff
+  - Enemy
+  - EWall
   layers:
   - Default
   - TransparentFX

@@ -31,23 +31,23 @@ public class mapGen : MonoBehaviour
             {
                 if (curentMap.GetPixel(x, y) == wall)
                 {
-                    Instantiate(Owall, ob + new Vector3(x,y,0), Quaternion.identity, gameObject.transform);
+                    Instantiate(Owall, ob + new Vector3(x+1,y,0), Quaternion.identity, gameObject.transform);
                 }
                 if (curentMap.GetPixel(x, y) == ruby)
                 {
-                    Instantiate(Oruby, ob + new Vector3(x, y, 0), Quaternion.identity, gameObject.transform);
+                    Instantiate(Oruby, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
                 if (curentMap.GetPixel(x, y) == enemy)
                 {
-                    Instantiate(Oenemy, ob + new Vector3(x, y, 0), Quaternion.identity, gameObject.transform);
+                    Instantiate(Oenemy, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
                 if (curentMap.GetPixel(x, y) == coin)
                 {
-                    Instantiate(Ocoin, ob + new Vector3(x, y, 0), Quaternion.identity, gameObject.transform);
+                    Instantiate(Ocoin, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
                 if (curentMap.GetPixel(x, y) == ghostWall)
                 {
-                    Instantiate(OghostWall, ob + new Vector3(x, y, 0), Quaternion.identity, gameObject.transform);
+                    Instantiate(OghostWall, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
             }
         }

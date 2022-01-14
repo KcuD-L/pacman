@@ -55,7 +55,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 26ebfb5742151bd40b9ef2c3d9171d73, type: 3}
   - {fileID: 2800000, guid: a5bb8079dba7a3e4bb4316df69e64126, type: 3}
   Owall: {fileID: 8689127988228926725, guid: 5b5d8f9f506d90b40b0175d230e5a60b, type: 3}
-  Oruby: {fileID: 0}
-  Oenemy: {fileID: 0}
-  Ocoin: {fileID: 0}
-  OghostWall: {fileID: 0}
+  Oruby: {fileID: 3074533424534995890, guid: a2abcbe332919b140985c3591f287a61, type: 3}
+  Oenemy: {fileID: 2539839403067480568, guid: 46e2b0d2cfacc92468ae5b7d582cab32, type: 3}
+  Ocoin: {fileID: 791259003481589063, guid: 357be583fc5ed9b4992a24c99577f039, type: 3}
+  OghostWall: {fileID: 8689127988228926725, guid: 5b5d8f9f506d90b40b0175d230e5a60b,
+    type: 3}
