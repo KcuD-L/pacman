@@ -32,14 +32,16 @@ public class Move : MonoBehaviour
         bool[] maxOff = Vector.Compare(Vector.Round(pos) + off, pos);
 
         inp = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        inp = MainAxis.EquateTo4Axis(inp);
+        inp = Axis.EquateTo4Axis(inp);
         if (inp != Vector2.zero)
         {
-            if (!isWall(inp) && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && dir != inp)
+            bool isWall = Axis.Touch(pos, next, "Wall");
+            if (!isWall && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && dir != inp)
             {
                 transform.position = Vector.Round(transform.position);
                 dir = inp;
                 next = Vector2.zero;
+                newAngle(Axis.LookAt2D(inp));
             }
             else
             {
@@ -52,30 +54,19 @@ public class Move : MonoBehaviour
     {
         bool[] minOff = Vector.Compare(pos, Vector.Round(pos) - off);
         bool[] maxOff = Vector.Compare(Vector.Round(pos) + off, pos);
-        if (!isWall(next) && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && next != Vector2.zero)
+        bool isWall = Axis.Touch(pos, next, "Wall");
+        if (!isWall && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && next != Vector2.zero)
         {
-             
             dir = next;
             inp = next;
+            newAngle(Axis.LookAt2D(next));
         }
     }
 
-    private bool isWall(Vector2 inp)
-    {
-        RaycastHit2D[] col = Physics2D.LinecastAll(pos + inp / 5, pos + inp - inp / 10);
-        for (int i = 0; i < col.Length; i++)
-        {
-            if (col[i].collider.tag == "Wall")
-            {
-                return (true);
-            }
-        }
-        return (false);
-    }
 
-    private void newAngle(int angle)
+    private void newAngle(float angle)
     {
-        transform.localRotation = Quaternion.Euler(0, 0, angle);
+        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnDrawGizmos()

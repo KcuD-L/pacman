@@ -6,7 +6,7 @@ using UC2D;
 public class Watcher : MonoBehaviour
 {
     [SerializeField] int speed;
-    private Vector2 dir;
+    private Vector2 dir, pos, off;
     private Rigidbody2D rb;
 
     private void Start()
@@ -17,24 +17,32 @@ public class Watcher : MonoBehaviour
     private void FixedUpdate()
     {
         Watch();
+        pos = transform.position;
         rb.velocity = dir * speed;
     }
 
     private void Watch()
     {
-        See(MainAxis.Takelook(gameObject.transform.position, Vector2.up, 8), Vector2.up);
-        See(MainAxis.Takelook(gameObject.transform.position, Vector2.down, 8), Vector2.down);
-        See(MainAxis.Takelook(gameObject.transform.position, Vector2.left, 8), Vector2.left);
-        See(MainAxis.Takelook(gameObject.transform.position, Vector2.right, 8), Vector2.right);
+        See(Axis.Takelook(pos, Vector2.up, 8), Vector2.up);
+        See(Axis.Takelook(pos, Vector2.down, 8), Vector2.down);
+        See(Axis.Takelook(pos, Vector2.left, 8), Vector2.left);
+        See(Axis.Takelook(pos, Vector2.right, 8), Vector2.right);
     }
 
     private void See(RaycastHit2D[] hit, Vector2 d)
     {
+        bool[] minOff = Vector.Compare(pos, Vector.Round(pos) - off);
+        bool[] maxOff = Vector.Compare(Vector.Round(pos) + off, pos);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.tag == "Player")
             {
-                dir = d;
+                bool isWall = Axis.Touch(pos, d, "Wall");
+                if (!isWall && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && dir != d)
+                {
+                    dir = d;
+                    transform.localRotation = Quaternion.AngleAxis(Axis.LookAt2D(d), Vector3.forward);
+                }
             }
         }
     }

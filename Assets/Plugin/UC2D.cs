@@ -20,17 +20,6 @@ namespace UC2D
             return (flat);
         }
 
-        public static Vector3 AddZ(Vector3 original, Vector3 target)
-        {
-            Vector3 flat = new Vector3(original.x, original.y, target.z);
-            return (flat);
-        }
-        public static Vector3 AddZ(Vector2 original, Vector3 target)
-        {
-            Vector3 flat = new Vector3(original.x, original.y, target.z);
-            return (flat);
-        }
-
         public static Vector3 Round(Vector3 target)
         {
             Vector3 done = new Vector3(Mathf.Round(target.x), Mathf.Round(target.y), Mathf.Round(target.z));
@@ -72,26 +61,9 @@ namespace UC2D
             }
             return (com);
         }
-
-
-
-        public static float GetAngle(Vector3 firstVector, Vector3 secondVector)
-        {
-            float aX = firstVector.x;
-            float aY = firstVector.x;
-            float aZ = firstVector.x;
-            float bX = secondVector.x;
-            float bY = secondVector.x;
-            float bZ = secondVector.x;
-            float firstStep = aX * bX + aY * bY + aZ * bZ;
-            float secondStep = Mathf.Sqrt((aX * aX) + (aY * aY) + (aZ * aZ)) + Mathf.Sqrt((bX * bX) + (bY * bY) + (bZ * bZ));
-            float cosAngle = Mathf.Cos((firstStep / secondStep));
-            float angle = Mathf.Acos(cosAngle);
-            return (angle);
-        }
     }
 
-    public static class MainAxis
+    public static class Axis
     {
         public static bool Compare4Axis(Vector2 input)
         {
@@ -134,6 +106,23 @@ namespace UC2D
         public static RaycastHit2D[] Takelook(Vector2 from, Vector3 to, int lenght)
         {
             return (Physics2D.RaycastAll(from, to, lenght));
+        }
+        public static float LookAt2D(Vector2 target)
+        {
+            float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+            return (angle);
+        }
+        public static bool Touch(Vector2 pos, Vector2 inp, string tag)
+        {
+            RaycastHit2D[] col = Physics2D.LinecastAll(pos + inp / 5, pos + inp - inp / 10);
+            for (int i = 0; i < col.Length; i++)
+            {
+                if (col[i].collider.tag == tag)
+                {
+                    return (true);
+                }
+            }
+            return (false);
         }
     }
 }

@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        Instantiate(EnemyList[Random.Range(0, EnemyList.Count+1)], gameObject.transform);
+        Instantiate(EnemyList[Random.Range(0, EnemyList.Count)], transform.position, Quaternion.identity, gameObject.transform);
     }
 
 }

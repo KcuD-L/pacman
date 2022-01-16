@@ -10,7 +10,7 @@ public class RandomDir : MonoBehaviour
 
     private void Start()
     {
-        dir = MainAxis.EquateTo4Axis(MainAxis.RandomAxis());
+        dir = Axis.EquateTo4Axis(Axis.RandomAxis());
         if (dir == Vector2.zero)
         {
             dir = new Vector2(1, 0);
@@ -28,7 +28,7 @@ public class RandomDir : MonoBehaviour
     {
         if (col.collider.tag == "Wall" || col.collider.tag == "EWall" || col.collider.tag == "Enemy")
         {
-            dir = MainAxis.EquateTo4Axis(MainAxis.RandomAxis());
+            dir = Axis.EquateTo4Axis(Axis.RandomAxis());
             transform.position = Vector.Round(transform.position);
             if (dir == Vector2.zero)
             {
