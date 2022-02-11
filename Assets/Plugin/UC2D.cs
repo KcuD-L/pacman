@@ -99,22 +99,44 @@ namespace UC2D
         }
         public static Vector2 RandomAxis()
         {
-            Vector2 ret = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
-            EquateTo4Axis(ret);
+            Vector2 ret = new Vector2(0, 0);
+            switch (UnityEngine.Random.Range(-1, 2))
+            {
+                case -1:
+                    ret = new Vector2(-1, 0);
+                    break;
+                case 1:
+                    ret = new Vector2(1, 0);
+                    break;
+                default:
+                    switch(UnityEngine.Random.Range(-1, 2))
+                    {
+                        case -1:
+                            ret = new Vector2(0, -1);
+                            break;
+                        case 1:
+                            ret = new Vector2(0, 1);
+                            break;
+                        default:
+                            ret = new Vector2(1, 0);
+                            break;
+                    }
+                    break;
+            }
             return (ret);
         }
-        public static RaycastHit2D[] Takelook(Vector2 from, Vector3 to, int lenght)
+        public static RaycastHit2D[] Takelook(Vector2 from, Vector3 to, float lenght)
         {
             return (Physics2D.RaycastAll(from, to, lenght));
         }
-        public static float LookAt2D(Vector2 target)
+        public static Quaternion LookAt2D(Vector2 target)
         {
             float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-            return (angle);
+            return (Quaternion.AngleAxis(angle, Vector3.forward));
         }
-        public static bool Touch(Vector2 pos, Vector2 inp, string tag)
+        public static bool Touch(Vector2 pos, Vector2 to, string tag)
         {
-            RaycastHit2D[] col = Physics2D.LinecastAll(pos + inp / 5, pos + inp - inp / 10);
+            RaycastHit2D[] col = Physics2D.LinecastAll(pos, to);
             for (int i = 0; i < col.Length; i++)
             {
                 if (col[i].collider.tag == tag)

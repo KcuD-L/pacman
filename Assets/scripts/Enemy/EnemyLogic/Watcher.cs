@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UC2D;
 
 public class Watcher : MonoBehaviour
@@ -37,11 +35,11 @@ public class Watcher : MonoBehaviour
         {
             if (hit[i].collider.tag == "Player")
             {
-                bool isWall = Axis.Touch(pos, d, "Wall");
+                bool isWall = Axis.Touch(pos, pos + d, "Wall");
                 if (!isWall && minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && dir != d)
                 {
                     dir = d;
-                    transform.localRotation = Quaternion.AngleAxis(Axis.LookAt2D(d), Vector3.forward);
+                    transform.localRotation = Axis.LookAt2D(d);
                 }
             }
         }
@@ -55,5 +53,4 @@ public class Watcher : MonoBehaviour
             transform.position = Vector.Round(transform.position);
         }
     }
-
 }

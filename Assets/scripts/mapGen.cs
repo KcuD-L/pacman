@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class mapGen : MonoBehaviour
 {
+    public Vector2 cord;
+
     [SerializeField] private List<Texture2D> maps;
-    [SerializeField] GameObject Owall, Oruby, Oenemy, Ocoin, OghostWall;
+    [SerializeField] private GameObject Owall, Oruby, Oenemy, Ocoin, OghostWall, OBuff;
+    [SerializeField] private int buffChance;
+
     private Color wall, ruby, enemy, coin, ghostWall;
     private Vector3 ob;
 
@@ -43,7 +47,15 @@ public class mapGen : MonoBehaviour
                 }
                 if (curentMap.GetPixel(x, y) == coin)
                 {
-                    Instantiate(Ocoin, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
+                    int rand = Random.Range(0, 500);
+                    if (rand < buffChance)
+                    {
+                        Instantiate(OBuff, ob + new Vector3(x + 1, y, 0), Quaternion.identity, gameObject.transform);
+                    }
+                    else
+                    {
+                        Instantiate(Ocoin, ob + new Vector3(x + 1, y, 0), Quaternion.identity, gameObject.transform);
+                    }
                 }
                 if (curentMap.GetPixel(x, y) == ghostWall)
                 {
@@ -51,6 +63,20 @@ public class mapGen : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GenNull()
+    {
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        Generate(maps[4]);
+    }
+
+    public void Des()
+    {
+        Destroy(gameObject);
     }
 
 }

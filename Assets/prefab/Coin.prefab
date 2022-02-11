@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7577144715821100878}
   - component: {fileID: 7816376157109296070}
-  - component: {fileID: 7009828567039635016}
   - component: {fileID: 923826585776334357}
   m_Layer: 0
   m_Name: Coin
@@ -83,25 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7009828567039635016
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791259003481589063}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 267ccf5382d08764d96ce014580589bc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!58 &923826585776334357
 CircleCollider2D:
   m_ObjectHideFlags: 0

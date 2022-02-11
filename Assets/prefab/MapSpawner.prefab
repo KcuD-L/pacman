@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5441648767516547837}
   m_Layer: 0
   m_Name: MapSpawner
-  m_TagString: Untagged
+  m_TagString: Maze
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b404142cbf8ac4681f2884b637f8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cord: {x: 0, y: 0}
   maps:
   - {fileID: 2800000, guid: ded9920e280f654469a68d0ad109751d, type: 3}
   - {fileID: 2800000, guid: 95f624bd150dcd34a9c643c98619d7eb, type: 3}
@@ -58,5 +59,7 @@ MonoBehaviour:
   Oruby: {fileID: 3074533424534995890, guid: a2abcbe332919b140985c3591f287a61, type: 3}
   Oenemy: {fileID: 2539839403067480568, guid: 46e2b0d2cfacc92468ae5b7d582cab32, type: 3}
   Ocoin: {fileID: 791259003481589063, guid: 357be583fc5ed9b4992a24c99577f039, type: 3}
-  OghostWall: {fileID: 8689127988228926725, guid: 5b5d8f9f506d90b40b0175d230e5a60b,
+  OghostWall: {fileID: 8251544257270982345, guid: 19c6704b01a2bb042bd1fa5f54def381,
     type: 3}
+  OBuff: {fileID: 6349127567360502648, guid: 4709293db9c8de849ad2d139bd714e2f, type: 3}
+  buffChance: 5
