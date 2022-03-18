@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 809c930203eab0c44a1e7ddbbc512a1f, type: 3}
   - {fileID: 2800000, guid: 26ebfb5742151bd40b9ef2c3d9171d73, type: 3}
   - {fileID: 2800000, guid: a5bb8079dba7a3e4bb4316df69e64126, type: 3}
+  Pacman: {fileID: 0}
   Owall: {fileID: 8689127988228926725, guid: 5b5d8f9f506d90b40b0175d230e5a60b, type: 3}
   Oruby: {fileID: 3074533424534995890, guid: a2abcbe332919b140985c3591f287a61, type: 3}
   Oenemy: {fileID: 2539839403067480568, guid: 46e2b0d2cfacc92468ae5b7d582cab32, type: 3}
@@ -62,4 +63,6 @@ MonoBehaviour:
   OghostWall: {fileID: 8251544257270982345, guid: 19c6704b01a2bb042bd1fa5f54def381,
     type: 3}
   OBuff: {fileID: 6349127567360502648, guid: 4709293db9c8de849ad2d139bd714e2f, type: 3}
+  Portal: {fileID: 3922199115150917545, guid: 93fcaf11c134c2a4b9acfb4af6b64de4, type: 3}
   buffChance: 5
+  coins: 0

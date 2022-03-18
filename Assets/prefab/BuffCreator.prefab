@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Buffs:
   - {fileID: 2868199967196564834, guid: 9a681f00a1e076c4fae5f7eb9c633030, type: 3}
+  - {fileID: 7630168279826762194, guid: 2cbc3724e5c513e4ebbe3c09d683cff8, type: 3}
+  - {fileID: 4425636949353127772, guid: b1d41b03914a01a4fb7bb558ed78f98e, type: 3}

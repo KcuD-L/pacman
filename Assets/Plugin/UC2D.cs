@@ -147,4 +147,29 @@ namespace UC2D
             return (false);
         }
     }
+
+    public static class Mth
+    {
+        public static float Loop(float now, float min, float max)
+        {
+            if(now > max)
+            {
+                return (min);
+            }
+            if(now < min)
+            {
+                return (max);
+            }
+            return (now);
+        }
+
+        public static bool isOutLoop(float now, float min, float max)
+        {
+            if (now > max || now < min)
+            {
+                return (true);
+            }
+            return (false);
+        }
+    }
 }

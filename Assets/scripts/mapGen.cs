@@ -7,11 +7,14 @@ public class mapGen : MonoBehaviour
     public Vector2 cord;
 
     [SerializeField] private List<Texture2D> maps;
-    [SerializeField] private GameObject Owall, Oruby, Oenemy, Ocoin, OghostWall, OBuff;
-    [SerializeField] private int buffChance;
+    [SerializeField] private GameObject Owall, Oruby, Oenemy, Ocoin, OghostWall, OBuff, Portal;
+    [SerializeField] private int buffChance, coins;
 
     private Color wall, ruby, enemy, coin, ghostWall;
     private Vector3 ob;
+
+    public delegate void Coins(int coin);
+    public static event Coins SendCoins;
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class mapGen : MonoBehaviour
                 if (curentMap.GetPixel(x, y) == ruby)
                 {
                     Instantiate(Oruby, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
+                    coins++;
                 }
                 if (curentMap.GetPixel(x, y) == enemy)
                 {
@@ -55,14 +59,17 @@ public class mapGen : MonoBehaviour
                     else
                     {
                         Instantiate(Ocoin, ob + new Vector3(x + 1, y, 0), Quaternion.identity, gameObject.transform);
+                        coins++;
                     }
                 }
                 if (curentMap.GetPixel(x, y) == ghostWall)
                 {
                     Instantiate(OghostWall, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
+                    Instantiate(Portal, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
             }
         }
+        SendCoins?.Invoke(coins);
     }
 
     public void GenNull()
@@ -71,12 +78,7 @@ public class mapGen : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Generate(maps[4]);
+        coins = 0;
+        Start();
     }
-
-    public void Des()
-    {
-        Destroy(gameObject);
-    }
-
 }

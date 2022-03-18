@@ -6,7 +6,10 @@ public class Move : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float speed = 2;
     [SerializeField] float offset = 0.1f;
-    private Vector2 dir,pos,inp, off, next;
+    [SerializeField] GameObject map;
+    private Vector2 dir,pos, off, next;
+    public bool WallEater;
+    public float speedBuf = 0f;
 
     private void Start()
     {
@@ -16,19 +19,24 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = dir * speed;
+        rb.velocity = dir * (speed + speedBuf);
 
         pos = transform.position;
         if (Input.anyKey)
         {
             Vector2 finp = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            finp = Axis.EquateTo4Axis(finp);            
+            finp = Axis.EquateTo4Axis(finp);
             if (finp != Vector2.zero)
             {
                 next = finp;
             }
         }
         Repeat();
+        if (Mth.isOutLoop(transform.position.x, 0, 14) || Mth.isOutLoop(transform.position.y, 0, 14))
+        {
+            transform.position = new Vector3(Mth.Loop(transform.position.x, 0, 14), Mth.Loop(transform.position.y, 0, 14), 0);
+            map.GetComponent<mapGen>().GenNull();
+        }
     }
 
     private void Repeat()
@@ -36,10 +44,13 @@ public class Move : MonoBehaviour
         bool[] minOff = Vector.Compare(pos, Vector.Round(pos) - off);
         bool[] maxOff = Vector.Compare(Vector.Round(pos) + off, pos);
         bool isWall = Axis.Touch(pos, pos + next, "Wall");
-        if (minOff[0] && minOff[1] && maxOff[0] && maxOff[1] && !isWall)
+        if (minOff[0] && minOff[1] && maxOff[0] && maxOff[1])
         {
-            dir = next;
-            transform.localRotation = Axis.LookAt2D(next);
+            if (!isWall || WallEater)
+            {
+                dir = next;
+                transform.localRotation = Axis.LookAt2D(next);
+            }
         }
     }
 }

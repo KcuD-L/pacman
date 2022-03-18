@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - EWall
   - Maze
+  - SpeedUp
+  - WallEater
   layers:
   - Default
   - TransparentFX
