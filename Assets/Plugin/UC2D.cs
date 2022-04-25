@@ -61,6 +61,14 @@ namespace UC2D
             }
             return (com);
         }
+
+        public static Vector3 LerpIgnoreZ(Vector3 obj, Vector3 target, float speed)
+        {
+            Vector3 first = new Vector3(obj.x, obj.y, obj.z);
+            Vector3 second = new Vector3(target.x, target.y, obj.z);
+            return (Vector3.Lerp(first,second,speed));
+
+        }
     }
 
     public static class Axis

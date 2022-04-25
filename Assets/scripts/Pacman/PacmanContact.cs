@@ -12,7 +12,7 @@ public class PacmanContact : MonoBehaviour
     public static event Collect OnCollect;
 
     [SerializeField] private int coins;
-
+    [SerializeField] GameObject map;
     [SerializeField] private Text text;
     [SerializeField] private Image BBImage, SBImage, WEImage;
     [SerializeField] private GameObject BBImageObj, SBO, WEO;
@@ -44,10 +44,6 @@ public class PacmanContact : MonoBehaviour
         {
             speedBuf = 0;
             gameObject.GetComponent<Move>().speedBuf = 0;
-        }
-        if (WallBuf >= 0.3f && WallBuf <= 0.5f)
-        {
-            transform.position = Vector.Round(transform.position);
         }
         if (WallBuf <= 0)
         {
@@ -146,7 +142,20 @@ public class PacmanContact : MonoBehaviour
             if (OnCollect != null)
             {
                 OnCollect.Invoke();
+                map.GetComponent<mapGen>().GenNull();
             }
+        }
+    }
+
+    public bool GetWallBuff()
+    {
+        if(WallBuf <= 0)
+        {
+            return (false);
+        }
+        else
+        {
+            return (true);
         }
     }
 

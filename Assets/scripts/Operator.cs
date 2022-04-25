@@ -4,8 +4,9 @@ using UC2D;
 public class Operator : MonoBehaviour
 {
     [SerializeField] GameObject cam, player;
-    private void Update()
+    [SerializeField] float speed;
+    private void FixedUpdate()
     {
-        cam.transform.position = Vector.IgnoreZ(player.transform.position, cam.transform.position);
+       cam.transform.position = Vector.LerpIgnoreZ(cam.transform.position, player.transform.position, speed*Time.deltaTime);
     }
 }

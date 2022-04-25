@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class OpenPortal : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-
 
     private void Start()
     {
         PacmanContact.OnCollect += Open;
-        Debug.Log("подписка");
-        anim = GetComponent<Animator>();
     }
 
     private void Open()
     {
-        Debug.Log("вмер");
         Desable();
         Destroy(gameObject);
-        
-        anim.SetBool("Active", true);
+    }
+
+    private void OnDestroy()
+    {
+        Desable();
+    }
+
+    private void OnDisable()
+    {
+        Desable();
     }
 
     private void Desable()
