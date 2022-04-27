@@ -80,6 +80,14 @@ public class PacmanContact : MonoBehaviour
             }
         }
 
+        if (collision.collider.tag == "Portal")
+        {
+            GameObject map = GameObject.FindGameObjectWithTag("Maze");
+            transform.position = new Vector2(Mth.Loop(transform.position.x, 0, 13), Mth.Loop(transform.position.y, 0, 13));
+            gameObject.GetComponent<Move>().targetPos = new Vector2(Mth.Loop(transform.position.x, 0, 13), Mth.Loop(transform.position.y, 0, 13));
+            map.GetComponent<mapGen>().GenNull();
+        }
+
         text.text = score.ToString();
     }
 
@@ -142,7 +150,7 @@ public class PacmanContact : MonoBehaviour
             if (OnCollect != null)
             {
                 OnCollect.Invoke();
-                map.GetComponent<mapGen>().GenNull();
+
             }
         }
     }

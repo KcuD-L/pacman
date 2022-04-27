@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baf28dadb508224e8276633cc411a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portal: {fileID: 711232462720831185, guid: 6979b97ba36962240a23ea86063786af, type: 3}
+  map: {fileID: 0}

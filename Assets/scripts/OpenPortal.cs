@@ -5,6 +5,8 @@ using UnityEngine;
 public class OpenPortal : MonoBehaviour
 {
 
+    [SerializeField] private GameObject portal;
+
     private void Start()
     {
         PacmanContact.OnCollect += Open;
@@ -12,7 +14,7 @@ public class OpenPortal : MonoBehaviour
 
     private void Open()
     {
-        Desable();
+        Instantiate(portal, transform.position, Quaternion.identity, transform.parent);
         Destroy(gameObject);
     }
 

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+
 using UC2D;
 
 public class Move : MonoBehaviour
 {
     [SerializeField] float speed = 2;
 
-    [SerializeField] private Vector2 inp, targetPos;
+    [SerializeField] public Vector2 inp, targetPos;
     public bool WallEater;
     public float speedBuf = 0f;
 
@@ -14,16 +15,27 @@ public class Move : MonoBehaviour
         targetPos = (Vector2)transform.position;
     }
 
+    public void Inp(Vector2 vec)
+    {
+        inp = vec;
+    }
+
     private void FixedUpdate()
     {
         bool IsWall=false;
         
         transform.position = Vector2.MoveTowards((Vector2)transform.position, targetPos, (speed + speedBuf) * Time.deltaTime);
-        if (Input.anyKey)
+
+        Vector2 input = new Vector2(0,0);
+
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        input = Axis.EquateTo4Axis(input);
+
+        if(input != Vector2.zero)
         {
-            inp = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            inp = Axis.EquateTo4Axis(inp);
+            inp = input;
         }
+
         RaycastHit2D[] col = Physics2D.LinecastAll(targetPos, targetPos + inp);
         for (int i = 0; i < col.Length; i++)
         {
@@ -36,24 +48,36 @@ public class Move : MonoBehaviour
                 IsWall = true;
             }
         }
+
         if (targetPos == (Vector2)transform.position)
         {
             if (IsWall || gameObject.GetComponent<PacmanContact>().GetWallBuff())
             {
-                targetPos = Vector.Round((Vector2)transform.position + inp);                
+                targetPos = Vector.Round((Vector2)transform.position + inp);
+                if (inp == new Vector2(0, -1))
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, -90);
+                }
+                if (inp == new Vector2(0, 1))
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 90);
+                }
+                if (inp == new Vector2(-1, 0))
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
+                if (inp == new Vector2(1, 0))
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
             return;
         }
-        if (Mth.isOutLoop(transform.position.x, 0, 14) || Mth.isOutLoop(transform.position.y, 0, 14))
+        if (Mth.isOutLoop(transform.position.x, 0, 13.9f) || Mth.isOutLoop(transform.position.y, 0, 13.9f))
         {
-            transform.position = new Vector2(Mth.Loop(transform.position.x, 0, 14), Mth.Loop(transform.position.y, 0, 14));
-            targetPos = new Vector2(Mth.Loop(transform.position.x, 0, 14), Mth.Loop(transform.position.y, 0, 14));
+            transform.position = new Vector2(Mth.Loop(transform.position.x, 0, 13.9f), Mth.Loop(transform.position.y, 0, 13.9f));
+            targetPos = new Vector2(Mth.Loop(transform.position.x, 0, 13.9f), Mth.Loop(transform.position.y, 0, 13.9f));
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)inp);
     }
 }
 

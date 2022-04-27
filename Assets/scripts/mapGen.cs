@@ -7,7 +7,7 @@ public class mapGen : MonoBehaviour
     public Vector2 cord;
 
     [SerializeField] private List<Texture2D> maps;
-    [SerializeField] private GameObject Owall, Oruby, Oenemy, Ocoin, OghostWall, OBuff, Portal;
+    [SerializeField] private GameObject Owall, Oruby, Oenemy, Ocoin, OBuff, Portal;
     [SerializeField] private int buffChance, coins;
 
     private Color wall, ruby, enemy, coin, ghostWall;
@@ -64,7 +64,6 @@ public class mapGen : MonoBehaviour
                 }
                 if (curentMap.GetPixel(x, y) == ghostWall)
                 {
-                    Instantiate(OghostWall, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                     Instantiate(Portal, ob + new Vector3(x+1, y, 0), Quaternion.identity, gameObject.transform);
                 }
             }

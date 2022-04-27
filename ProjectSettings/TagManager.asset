@@ -14,6 +14,7 @@ TagManager:
   - Maze
   - SpeedUp
   - WallEater
+  - Portal
   layers:
   - Default
   - TransparentFX

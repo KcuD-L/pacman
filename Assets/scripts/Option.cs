@@ -1,34 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Option : MonoBehaviour
 {
-    public AudioSource audio;
-    public GameObject BG;
-    public Slider SondSlider;
-
-    public void OpenMenuTab()
+    [SerializeField] private AudioMixerGroup Mixer;
+   private void OnEnable()
     {
-        if (Time.timeScale != 0.1f)
-        {
-            Time.timeScale = 0.1f;
-            BG.SetActive(true);
-        }
-    }
-    public void CloseMenuTab()
-    {
-        if (Time.timeScale != 1)
-        {
-            Time.timeScale = 1;
-            BG.SetActive(false);
-        }
+        Time.timeScale = 0;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        audio.volume = SondSlider.value*0.5f;
-        Debug.Log(SondSlider.value);
+        Time.timeScale = 1;
+    }
+
+    public void ChangeVolume(float volume)
+    {
+        Mixer.audioMixer.SetFloat("Sound", Mathf.Lerp(-80, 0, volume));
     }
 }
