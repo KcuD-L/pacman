@@ -180,4 +180,12 @@ namespace UC2D
             return (false);
         }
     }
+
+    public static class Movement
+    {
+        public static void Platformer(Rigidbody2D rigidbody, Vector2 direction, float speed)
+        {
+            rigidbody.velocity = direction * speed;
+        }
+    }
 }
